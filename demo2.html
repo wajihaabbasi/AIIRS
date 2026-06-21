@@ -44,7 +44,47 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
+    .team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 3rem;
+}
 
+.team-card {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  padding: 1.5rem 2rem;
+  background: var(--card);
+  border: 1px solid rgba(255,111,197,.1);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color .2s, transform .2s;
+  opacity: 0;
+}
+
+.team-card:hover {
+  border-color: var(--pink);
+  transform: translateY(-3px);
+}
+
+.team-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ghost);
+  transition: color .2s;
+}
+
+.team-card:hover .team-name { color: var(--pink); }
+
+.team-uni {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .06em;
+  color: var(--mid);
+}
     /* ── Grid noise texture overlay ─────────────────── */
     body::before {
       content: '';
@@ -1170,6 +1210,42 @@
   </section>
 
   <div class="section-divider"><div class="divider-line"></div></div>
+  <!-- ── Team ── -->
+
+<section id="team">
+  <p class="eyebrow">The Team</p>
+  <h2>NET2</h2>
+
+  <div class="team-grid">
+
+    <a href="https://github.com/wajihaabbasi" target="_blank" rel="noopener" class="team-card">
+      <div class="team-name">Wajiha Abbasi</div>
+      <div class="team-uni">B.Sc.Computer Science - IU Internationale Hochshule Berlin</div>
+    </a>
+
+    <a href="https://yourwebsite.com" target="_blank" rel="noopener" class="team-card">
+      <div class="team-name">Maryam Fatima</div>
+      <div class="team-uni">B.Sc.Computer Science - SRH Berlin</div>
+    </a>
+
+    <a href="https://yourwebsite.com" target="_blank" rel="noopener" class="team-card">
+      <div class="team-name">Minahal Zaheer</div>
+      <div class="team-uni">B.Sc.Computer Science - SRH Berlin</div>
+    </a>
+
+    <a href="https://yourwebsite.com" target="_blank" rel="noopener" class="team-card">
+      <div class="team-name">Shalika Manjo</div>
+      <div class="team-uni">B.Sc.Computer Science - SRH Berlin</div>
+    </a>
+
+    <a href="https://yourwebsite.com" target="_blank" rel="noopener" class="team-card">
+      <div class="team-name">Arnav V</div>
+      <div class="team-uni">B.Sc.Computer Science - SRH Berlin</div>
+    </a>
+
+  </div>
+</section>
+<div class="section-divider"><div class="divider-line"></div></div>
 
   <!-- ── CTA ── -->
   <section id="cta">
@@ -1355,6 +1431,14 @@
           }
         });
       }
+    });
+
+    gsap.utils.toArray('.team-card').forEach((card, i) => {
+    gsap.to(card, {
+    opacity: 1, y: 0, duration: .5, delay: i * 0.12,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: '.team-grid', start: 'top 85%' }
+    });
     });
   </script>
 </body>
