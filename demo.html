@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIIRS — AI Incident Intelligence, Sealed by Hardware</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">AI<span>IRS</span></div>
+    <ul class="nav-links">
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#solution">Solution</a></li>
+      <li><a href="#market">Market</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#federated">Scale</a></li>
+      <li><a href="#team">Team</a></li>
+    </ul>
+    <a href="#cta" class="nav-cta">Request Access</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <p class="hero-tag">Confidential Computing · RAG · TEE</p>
+      <h1 class="hero-headline">
+        <span class="line"><span>Your incident history.</span></span>
+        <span class="line"><span>Searchable by AI.</span></span>
+        <span class="line"><span class="accent">Sealed by hardware.</span></span>
+      </h1>
+      <p class="hero-sub">AIIRS lets on-call engineers query years of internal postmortems in natural language — without exposing sensitive infrastructure data to any cloud provider, third-party API, or even us.</p>
+      <div class="hero-actions">
+        <a href="#solution" class="btn-primary">See how it works →</a>
+        <a href="#architecture" class="btn-ghost">View architecture</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="divider-line"></div></div>
+
+  <!-- PROBLEM -->
+  <section id="problem">
+    <p class="eyebrow">The Problem</p>
+    <h2>Incident knowledge is trapped and too sensitive to share.</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="icon">🔍</div>
+        <h3>Keyword search fails under pressure</h3>
+        <p>At 2am, engineers describe symptoms — not root causes. A keyword search for "API latency" misses the postmortem titled "database connection pool exhaustion". Semantic search doesn't.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🔒</div>
+        <h3>Postmortems are too sensitive for cloud LLMs</h3>
+        <p>Incident reports contain internal hostnames, software versions, past vulnerabilities, and sometimes credentials. Sending these to any external API means your cloud provider can read them.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">⏱️</div>
+        <h3>Time-to-resolution is the metric that matters</h3>
+        <p>Every minute of an outage costs revenue and trust. The fastest resolution path is a past incident with a matching root cause — but finding it across hundreds of documents is too slow.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🏗️</div>
+        <h3>Small teams can't build this in-house</h3>
+        <p>Building a confidential AI pipeline requires deep expertise in hardware security, vector databases, and MLOps. Most companies don't have that — and can't afford to hire it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="divider-line"></div></div>
+
+  <!-- SOLUTION -->
+  <section id="solution">
+    <p class="eyebrow">The Solution</p>
+    <div class="solution-layout">
+      <div class="terminal-window">
+        <div class="terminal-bar">
+          <div class="dot dot-red"></div>
+          <div class="dot dot-amber"></div>
+          <div class="dot dot-green"></div>
+          <span class="terminal-title">aiirs — query</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-prompt">engineer@oncall $</span> <span class="t-cmd">query "API latency 3x normal, no recent deploys"</span></div>
+          <br/>
+          <div class="t-out">🔍 Embedding query inside CVM...</div>
+          <div class="t-out">🔍 Searching sealed index (847 chunks)...</div>
+          <br/>
+          <div class="t-out">Retrieved <span class="t-hit">3 relevant incidents</span>:</div>
+          <div class="t-out"> ↳ <span class="t-file">2024-03_db_pool_exhaustion.md</span> (0.91)</div>
+          <div class="t-out"> ↳ <span class="t-file">2023-11_connection_timeout.md</span>  (0.84)</div>
+          <div class="t-out"> ↳ <span class="t-file">runbook_latency_response.md</span>   (0.79)</div>
+          <br/>
+          <div class="t-out">💬 <span class="t-hit">Answer (grounded in your postmortems):</span></div>
+          <div class="t-out">"This matches a March 2024 incident caused by</div>
+          <div class="t-out"> connection pool exhaustion after a traffic spike.</div>
+          <div class="t-out"> Fix: increase pool size and add circuit breaker.</div>
+          <div class="t-out"> See 2024-03_db_pool_exhaustion.md for full runbook."</div>
+          <br/>
+          <div><span class="t-prompt">engineer@oncall $</span> <span class="cursor"></span></div>
+        </div>
+      </div>
+      <div class="solution-copy">
+        <h2>Query your history. Get cited answers. Trust the hardware.</h2>
+        <p>AIIRS runs the full pipeline — embedding, retrieval, and LLM inference — inside a hardware-sealed Confidential VM. The cloud provider cannot read it. We cannot read it. Only you can.</p>
+        <p>Clients receive a cryptographic attestation proof before uploading a single document. Trust is established by hardware, not policy.</p>
+        <ul class="feature-list">
+          <li>Semantic search surfaces matches that keyword search misses</li>
+          <li>Answers cite source files — engineers can verify every claim</li>
+          <li>No external API calls — LLM inference runs locally inside the CVM</li>
+          <li>Intel TDX memory encryption: data stays sealed during processing</li>
+          <li>Remote attestation via dstack SDK — verifiable before any data moves</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="divider-line"></div></div>
+
+  <!-- MARKET -->
+  <section id="market">
+    <p class="eyebrow">Go-To-Market</p>
+    <h2>Starting in Germany. Expanding globally.</h2>
+    <div class="stat-strip">
+      <div class="stat-cell">
+        <div class="stat-number">83%</div>
+        <div class="stat-label">of German enterprises use Java or .NET as primary backend stack</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">€4.1B</div>
+        <div class="stat-label">German IT security market size (2024)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">GDPR</div>
+        <div class="stat-label">Compliance pressure makes confidential processing a legal priority</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number">72%</div>
+        <div class="stat-label">of enterprises cite data residency as blocker for cloud AI adoption</div>
+      </div>
+    </div>
+
+    <p class="eyebrow tl-eyebrow">Expansion Roadmap</p>
+
+    <div class="timeline-section">
+      <div class="timeline-track-wrapper">
+        <div class="timeline-track" id="timelineTrack">
+          <div class="tl-line-wrap">
+            <div class="tl-line-bg"></div>
+            <div class="tl-line-fill" id="tlFill"></div>
+          </div>
+          <div class="tl-node" data-index="0">
+            <div class="tl-node-dot" id="dot0"></div>
+            <div class="tl-node-label">Phase 1</div>
+          </div>
+          <div class="tl-node" data-index="1">
+            <div class="tl-node-dot" id="dot1"></div>
+            <div class="tl-node-label">Phase 2</div>
+          </div>
+          <div class="tl-node" data-index="2">
+            <div class="tl-node-dot" id="dot2"></div>
+            <div class="tl-node-label">Phase 3</div>
+          </div>
+          <div class="tl-fade-tail">
+            <div class="tl-tail-line"></div>
+            <span class="tl-tail-arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-popup" id="tlPopup" aria-live="polite">
+        <button class="tl-popup-close" id="tlPopupClose" aria-label="Close">✕</button>
+        <div class="tl-popup-phase" id="popPhase"></div>
+        <div class="tl-popup-title" id="popTitle"></div>
+        <div class="tl-popup-desc" id="popDesc"></div>
+        <div class="tl-popup-tags" id="popTags"></div>
+      </div>
+
+      <p class="tl-hint">Click a node or drag to explore — continues beyond</p>
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="divider-line"></div></div>
+
+  <!-- ARCHITECTURE -->
+  <section id="architecture">
+    <p class="eyebrow">Architecture</p>
+    <h2>Everything inside the enclave. Nothing outside it.</h2>
+    <div class="arch-diagram">
+      <div class="arch-layers">
+        <div class="arch-layer">
+          <div class="layer-name"><span class="layer-icon">👤</span>Client</div>
+          <div class="layer-desc">On-call engineer submits a natural-language query over HTTPS. Before uploading any documents, the client verifies the cryptographic attestation proof to confirm the exact code is running.</div>
+        </div>
+        <div class="arch-arrow">↓ TLS (Dstack Gateway) ↓</div>
+        <div class="arch-layer tee-boundary">
+          <span class="tee-label">TEE BOUNDARY — Intel TDX CVM</span>
+          <div class="layer-name"><span class="layer-icon">⚡</span>FastAPI</div>
+          <div class="layer-desc">REST endpoint inside the CVM. Receives query, orchestrates the pipeline, returns grounded answer with source citations. All processing sealed inside hardware-encrypted memory.</div>
+        </div>
+        <div class="arch-layer tee-boundary">
+          <span class="tee-label">TEE BOUNDARY — Intel TDX CVM</span>
+          <div class="layer-name"><span class="layer-icon">🔢</span>Embedding</div>
+          <div class="layer-desc">sentence-transformers (all-MiniLM-L6-v2) converts the query to a vector embedding. Runs locally — no external embedding API call. The vector stays inside the enclave.</div>
+        </div>
+        <div class="arch-layer tee-boundary">
+          <span class="tee-label">TEE BOUNDARY — Intel TDX CVM</span>
+          <div class="layer-name"><span class="layer-icon">📚</span>FAISS Index</div>
+          <div class="layer-desc">Sealed in-memory vector index over all ingested postmortems. Approximate nearest-neighbour search returns top-k semantically relevant chunks. Index never leaves the CVM.</div>
+        </div>
+        <div class="arch-layer tee-boundary">
+          <span class="tee-label">TEE BOUNDARY — Intel TDX CVM</span>
+          <div class="layer-name"><span class="layer-icon">🧠</span>LLM (Ollama)</div>
+          <div class="layer-desc">Local 8B parameter model synthesises a grounded answer from retrieved chunks. No external API call. Answer cites source documents. Inference is hardware-isolated from operator and cloud provider.</div>
+        </div>
+        <div class="arch-arrow">↓ dstack SDK · get_quote() ↓</div>
+        <div class="arch-layer">
+          <div class="layer-name"><span class="layer-icon">🔐</span>Attestation</div>
+          <div class="layer-desc">On demand, the CVM generates a TDX Quote — a signed hardware report containing the MRENCLAVE measurement of the running code. Verifiable independently at proof.t16z.com before any data is uploaded.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="divider-line"></div></div>
+
+  <!-- FEDERATED -->
+  <section id="federated">
+    <p class="eyebrow">Full Scale</p>
+    <h2>Multi-organisation. Zero data exposure.</h2>
+    <p class="section-lead">At full scale, organisations pool incident knowledge across Confidential VMs. No company sees another's raw postmortems — only the synthesised, federated answer. Coordinated by Flower, attested by hardware.</p>
+    <div class="fed-grid">
+      <div class="fed-node">
+        <div class="node-icon">🏦</div>
+        <h3>Org A — Fintech</h3>
+        <p>Attested CVM with sealed postmortem index. Accepts federated queries. Returns ranked chunk IDs, never raw documents.</p>
+      </div>
+      <div class="fed-node">
+        <div class="node-icon">🏭</div>
+        <h3>Org B — Manufacturing</h3>
+        <p>Independent CVM, independently attested. Contributes retrieval results to the federation without exposing its incident corpus.</p>
+      </div>
+      <div class="fed-node">
+        <div class="node-icon">🚗</div>
+        <h3>Org C — Automotive</h3>
+        <p>Third independent node. Each node verifies the others' attestation proofs before participating — trust is cryptographic, not contractual.</p>
+      </div>
+      <div class="fed-connector">
+        <div class="fed-connector-line">
+          <div class="connector-dot"></div>
+          <div class="connector-bar"></div>
+          <div class="connector-dot"></div>
+          <div class="connector-bar"></div>
+          <div class="connector-dot"></div>
+        </div>
+        <p class="fed-flower">Flower FL aggregation server · optionally runs inside its own CVM · coordinates retrieval across nodes · never receives raw documents</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="divider-line"></div></div>
+
+  <!-- SECURITY -->
+  <section id="security">
+    <p class="eyebrow">Security Model</p>
+    <h2>Three guarantees. All hardware-enforced.</h2>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h3>Confidentiality</h3>
+        <p>Intel TDX encrypts CVM memory at the hardware level. The cloud provider, the hypervisor, and the OS cannot read postmortems or queries being processed. Data stays sealed during computation — not just at rest.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h3>Integrity</h3>
+        <p>TDX measures the CVM's initial memory state. Any modification to the running code changes the measurement. Tampering is detectable before any client uploads data — by anyone, independently.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h3>Attestation</h3>
+        <p>A TDX Quote is a signed hardware report proving which exact code is running. Signed by Intel's attestation key — not ours. Clients verify this independently before trusting us with a single document.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="divider-line"></div></div>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="cta-inner">
+      <p class="eyebrow" style="opacity:1; text-align:center;">Science Hackathon 2026 · TUM</p>
+      <h2>Built for the companies that can't afford to trust anyone.</h2>
+      <p>AIIRS is a proof-of-concept built at the TUM Science Hackathon 2026. The architecture is real. The security model is verifiable. The demo is live.</p>
+      <div class="cta-actions">
+        <a href="#architecture" class="btn-primary">Explore the architecture →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="divider-line"></div></div>
+
+  <!-- TEAM -->
+  <section id="team">
+    <p class="eyebrow">The Team</p>
+    <h2>Built at TUM.</h2>
+    <div class="team-grid">
+      <a href="https://yourwebsite.com" target="_blank" rel="noopener" class="team-card">
+        <div class="team-name">Your Name</div>
+        <div class="team-uni">Technical University of Munich</div>
+      </a>
+      <a href="https://yourwebsite.com" target="_blank" rel="noopener" class="team-card">
+        <div class="team-name">Teammate Two</div>
+        <div class="team-uni">Technical University of Munich</div>
+      </a>
+      <a href="https://yourwebsite.com" target="_blank" rel="noopener" class="team-card">
+        <div class="team-name">Teammate Three</div>
+        <div class="team-uni">Technical University of Munich</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">AI<span>IRS</span></div>
+    <p>Science Hackathon 2026 · TUM · Confidential Computing Track</p>
+    <p class="footer-sub">Intel TDX · Dstack · Flower FL</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
