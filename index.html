@@ -1483,7 +1483,7 @@
       });
     });
 
-    // Roadmap phases
+    /* Roadmap phases
     gsap.utils.toArray('.roadmap-phase').forEach((phase, i) => {
       gsap.to(phase, {
         opacity: 1, x: 0, duration: .6, delay: i * 0.12,
@@ -1491,6 +1491,150 @@
         scrollTrigger: { trigger: '.roadmap-track', start: 'top 85%' }
       });
     });
+*/
+
+    //new road map
+    const timelineData = [
+  {
+    indexString: "01 / 03",
+    bigNum: "01",
+    phaseTag: "PHASE 01 · CORE",
+    title: "The Foundation",
+    techSub: "Java + Node.js",
+    desc: "The RAG starts inside the dominant German enterprise stack — JVM memory leaks, Spring Boot dependency CVEs, Node.js event-loop blocking, npm and Maven failures.",
+    highlight: "A vast majority of corporate German infrastructure runs here. Immediate, defensible TAM.",
+    metrics: [
+      { num: "01", text: "SAP · Zalando · Deutsche Bank Stack" },
+      { num: "02", text: "Spring Boot + Express Frameworks" },
+      { num: "03", text: "Largest Beachhead Market Opportunity" }
+    ],
+    positionPct: 18
+  },
+  {
+    indexString: "02 / 03",
+    bigNum: "02",
+    phaseTag: "PHASE 02 · SYSTEMIC EXPANSION",
+    title: "Systemic Expansion",
+    techSub: "Go + Kotlin",
+    desc: "Kotlin shares execution topologies seamlessly on the Java Virtual Machine. Go architectures map perfectly onto existing cloud infrastructure network boundaries, timeout exceptions, and container footprints.",
+    highlight: "Adjacent domains capture data logic matches without algorithmic rewrite friction.",
+    metrics: [
+      { num: "01", text: "Shared Virtual Machine Parameters" },
+      { num: "02", text: "Microservices & Distributed Topology" },
+      { num: "03", text: "Container Logging Pipeline Syncs" }
+    ],
+    positionPct: 50
+  },
+  {
+    indexString: "03 / 03",
+    bigNum: "03",
+    phaseTag: "PHASE 03 · ENTERPRISE & SYSTEMS",
+    title: "The Edge Cases",
+    techSub: "Rust + C#",
+    desc: "Cross-pollinating enterprise dependency chains within legacy enterprise system platforms (.NET) alongside critical modern sandboxed cloud hardware components engineered using memory-safe architectures.",
+    highlight: "Securing deep low-level cloud dependencies inside isolated computing boundaries.",
+    metrics: [
+      { num: "01", text: "Managed Object Framework Matrix" },
+      { num: "02", text: "Low-Level Secure Virtualization" },
+      { num: "03", text: "Total Perimeter Domain Coverage" }
+    ],
+    positionPct: 82
+  }
+];
+
+document.addEventListener("DOMContentLoaded", () => {
+  const lenis = new Lenis();
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  initTimeline();
+});
+
+function initTimeline() {
+  const track = document.getElementById("timelineTrack");
+  const progressLine = document.getElementById("progressLine");
+  const nodes = document.querySelectorAll(".timeline-node");
+
+  let isDragging = false;
+  const nodePositions = timelineData.map(d => d.positionPct);
+
+  nodes.forEach((node, idx) => {
+    node.addEventListener("click", () => {
+      updateTimelineView(nodePositions[idx]);
+    });
+  });
+
+  function updateTimelineView(pct) {
+    const clampedPct = Math.max(0, Math.min(100, pct));
+    progressLine.style.width = `${clampedPct}%`;
+
+    let closestIdx = 0;
+    let minDiff = Infinity;
+    nodePositions.forEach((pos, idx) => {
+      const diff = Math.abs(pos - clampedPct);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIdx = idx;
+      }
+    });
+
+    nodes.forEach((node, idx) => {
+      if (idx === closestIdx) {
+        node.classList.add("active-node");
+      } else {
+        node.classList.remove("active-node");
+      }
+    });
+
+    const data = timelineData[closestIdx];
+    document.getElementById("slideCounter").innerText = data.indexString;
+    document.getElementById("slideBigNum").innerText = data.bigNum;
+    document.getElementById("slidePhaseTag").innerText = data.phaseTag;
+    document.getElementById("slideHeading").innerText = data.title;
+    document.getElementById("slideTechSub").innerText = data.techSub;
+    document.getElementById("slideDesc").innerText = data.desc;
+    document.getElementById("slideHighlight").innerText = data.highlight;
+
+    const metricsContainer = document.getElementById("slideMetrics");
+    metricsContainer.innerHTML = "";
+    data.metrics.forEach(metric => {
+      const col = document.createElement("div");
+      col.className = "metric-col";
+      
+      const numDiv = document.createElement("div");
+      numDiv.className = "metric-number";
+      numDiv.innerText = metric.num;
+      
+      const txtDiv = document.createElement("div");
+      txtDiv.className = "metric-text";
+      txtDiv.innerText = metric.text;
+
+      col.appendChild(numDiv);
+      col.appendChild(txtDiv);
+      metricsContainer.appendChild(col);
+    });
+  }
+
+  function handleInteraction(clientX) {
+    const rect = track.getBoundingClientRect();
+    const currentX = clientX - rect.left;
+    const pct = (currentX / rect.width) * 100;
+    updateTimelineView(pct);
+  }
+
+  track.addEventListener("mousedown", () => isDragging = true);
+  window.addEventListener("mousemove", (e) => { if (isDragging) handleInteraction(e.clientX); });
+  window.addEventListener("mouseup", () => isDragging = false);
+
+  track.addEventListener("touchstart", () => isDragging = true);
+  window.addEventListener("touchmove", (e) => { if (isDragging) handleInteraction(e.touches[0].clientX); });
+  window.addEventListener("touchend", () => isDragging = false);
+
+  updateTimelineView(18);
+}
 
     // Arch diagram
     gsap.to('.arch-diagram', {
