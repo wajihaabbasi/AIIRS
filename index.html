@@ -530,78 +530,224 @@
       letter-spacing: .04em;
     }
 
-    /* Language roadmap horizontal scroll */
-    .roadmap-track {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 3rem;
-      overflow-x: auto;
-      padding-bottom: 1rem;
-      scrollbar-width: none;
-    }
+  /* ── Tech-Proximity Slide Layout additions ── */
+.market-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
 
-    .roadmap-track::-webkit-scrollbar { display: none; }
+.slide-counter {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--slate);
+  letter-spacing: 0.05em;
+}
 
-    .roadmap-phase {
-      flex-shrink: 0;
-      width: 280px;
-      background: var(--card);
-      border: 1px solid rgba(255,111,197,.1);
-      border-radius: 8px;
-      padding: 1.75rem;
-      opacity: 0;
-      transform: translateX(40px);
-    }
+.market-main-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ghost);
+  margin-bottom: 5rem;
+}
 
-    .roadmap-phase.active-phase {
-      border-color: var(--pink);
-      box-shadow: 0 0 30px rgba(255,111,197,.1);
-    }
+.market-main-title .italic-pink {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--pink);
+}
 
-    .phase-label {
-      font-family: var(--font-mono);
-      font-size: .7rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--pink);
-      margin-bottom: .75rem;
-    }
+.active-phase-display {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 4rem;
+  min-height: 380px;
+  align-items: flex-start;
+  margin-bottom: 4rem;
+}
 
-    .phase-title {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--ghost);
-      margin-bottom: .75rem;
-    }
+.display-left {
+  position: relative;
+}
 
-    .phase-desc {
-      font-size: .87rem;
-      color: var(--mid);
-      line-height: 1.6;
-      margin-bottom: 1.25rem;
-    }
+.slide-big-num {
+  font-family: var(--font-display);
+  font-size: 13rem;
+  font-weight: 700;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 111, 197, 0.15);
+  user-select: none;
+}
 
-    .lang-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .5rem;
-    }
+.phase-meta-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--pink);
+  margin-bottom: 1.5rem;
+}
 
-    .lang-tag {
-      font-family: var(--font-mono);
-      font-size: .72rem;
-      padding: .25rem .65rem;
-      border-radius: 3px;
-      border: 1px solid rgba(255,111,197,.2);
-      color: var(--mid);
-    }
+.phase-main-heading {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 700;
+  color: var(--ghost);
+  margin-bottom: 1rem;
+}
 
-    .lang-tag.primary {
-      background: rgba(255,111,197,.12);
-      border-color: rgba(255,111,197,.4);
-      color: var(--pink);
-    }
+.phase-tech-sub {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--pink);
+  margin-bottom: 2.5rem;
+}
+
+.phase-description {
+  font-size: 1.15rem;
+  color: var(--mid);
+  line-height: 1.6;
+  max-width: 650px;
+  margin-bottom: 1.5rem;
+}
+
+.phase-highlight-text {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: rgba(139, 163, 191, 0.6);
+  margin-bottom: 3rem;
+}
+
+.phase-sub-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  border-top: 1px solid rgba(255, 111, 197, 0.1);
+  padding-top: 1.5rem;
+}
+
+.metric-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.metric-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--pink);
+}
+
+.metric-text {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--mid);
+  line-height: 1.4;
+}
+
+/* ── Refined Control Track ── */
+.interactive-timeline-container {
+  position: relative;
+  width: 100%;
+  margin-top: 6rem;
+  padding: 2rem 0 6rem;
+}
+
+.timeline-drag-track {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 111, 197, 0.15);
+  cursor: grab;
+  user-select: none;
+}
+
+.timeline-progress-line {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  background: var(--pink);
+}
+
+.timeline-node {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.timeline-node .node-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 1px solid rgba(255, 111, 197, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--mid);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-node.active-node .node-circle {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: var(--navy);
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(255, 111, 197, 0.4);
+}
+
+.node-meta {
+  position: absolute;
+  top: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.meta-top {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--slate);
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.meta-bottom {
+  font-size: 0.8rem;
+  color: var(--mid);
+}
+
+.timeline-node.active-node .meta-top { color: var(--pink); }
+.timeline-node.active-node .meta-bottom { color: var(--ghost); }
+
+.timeline-end-fade {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 15%;
+  background: linear-gradient(90deg, transparent, var(--navy));
+  pointer-events: none;
+}
+
+.timeline-footer-instruction {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--slate);
+  letter-spacing: 0.15em;
+  margin-top: 2rem;
+}
 
     /* ── ARCHITECTURE ───────────────────────────────── */
     #architecture { padding-top: 9rem; }
@@ -1004,96 +1150,72 @@
   <!-- ── Market ── -->
   <section id="market">
     <div class="market-inner">
-      <p class="eyebrow">Go-To-Market</p>
-      <h2>Starting in Germany. Expanding globally.</h2>
+      <div class="market-header-row">
+        <p class="eyebrow">/ THE TECH-PROXIMITY ROADMAP</p>
+        <div class="slide-counter" id="slideCounter">01 / 03</div>
+      </div>
+      
+      <h2 class="market-main-title">Scaling outward by <span class="italic-pink">architectural proximity.</span></h2>
 
-      <div class="stat-strip">
-        <div class="stat-cell">
-          <div class="stat-number">83%</div>
-          <div class="stat-label">of German enterprises use Java or .NET as primary backend stack</div>
+      <div class="active-phase-display">
+        <div class="display-left">
+          <div class="slide-big-num" id="slideBigNum">01</div>
         </div>
-        <div class="stat-cell">
-          <div class="stat-number">€4.1B</div>
-          <div class="stat-label">German IT security market size (2024)</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-number">GDPR</div>
-          <div class="stat-label">Compliance pressure makes confidential processing a legal priority</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-number">72%</div>
-          <div class="stat-label">of enterprises cite data residency as blocker for cloud AI adoption</div>
+        <div class="display-right">
+          <p class="phase-meta-tag" id="slidePhaseTag">PHASE 01 · CORE</p>
+          <h3 class="phase-main-heading" id="slideHeading">The Foundation</h3>
+          <p class="phase-tech-sub" id="slideTechSub">Java + Node.js</p>
+          
+          <p class="phase-description" id="slideDesc">
+            The RAG starts inside the dominant German enterprise stack — JVM memory leaks, Spring Boot dependency CVEs, Node.js event-loop blocking, npm and Maven failures.
+          </p>
+          
+          <p class="phase-highlight-text" id="slideHighlight">
+            A vast majority of corporate German infrastructure runs here. Immediate, defensible TAM.
+          </p>
+
+          <div class="phase-sub-metrics" id="slideMetrics">
+            </div>
         </div>
       </div>
 
-      <p class="eyebrow" style="opacity:1;">Expansion Roadmap</p>
-      <div class="roadmap-track" id="roadmapTrack">
+      <div class="interactive-timeline-container">
+        <div class="timeline-drag-track" id="timelineTrack">
+          <div class="timeline-progress-line" id="progressLine"></div>
+          
+          <div class="timeline-node active-node" data-index="0" style="left: 18%;">
+            <div class="node-circle">01</div>
+            <div class="node-meta">
+              <span class="meta-top">CORE</span>
+              <span class="meta-bottom">Java + Node.js</span>
+            </div>
+          </div>
 
-        <div class="roadmap-phase active-phase">
-          <div class="phase-label">Phase 1 — Now</div>
-          <div class="phase-title">Germany · Enterprise Core</div>
-          <p class="phase-desc">Target mid-market German enterprises in fintech, automotive, and manufacturing. Java and .NET teams with existing SRE practices and GDPR compliance requirements.</p>
-          <div class="lang-tags">
-            <span class="lang-tag primary">Java</span>
-            <span class="lang-tag primary">.NET / C#</span>
-            <span class="lang-tag">Spring Boot</span>
-            <span class="lang-tag">Azure</span>
+          <div class="timeline-node" data-index="1" style="left: 50%;">
+            <div class="node-circle">02</div>
+            <div class="node-meta">
+              <span class="meta-top">SYSTEMIC EXPANSION</span>
+              <span class="meta-bottom">Go + Kotlin</span>
+            </div>
+          </div>
+
+          <div class="timeline-node" data-index="2" style="left: 82%;">
+            <div class="node-circle">03</div>
+            <div class="node-meta">
+              <span class="meta-top">ENTERPRISE & SYSTEMS</span>
+              <span class="meta-bottom">Rust + C#</span>
+            </div>
           </div>
         </div>
+        
+        <div class="timeline-end-fade"></div>
+      </div>
 
-        <div class="roadmap-phase">
-          <div class="phase-label">Phase 2 — 6 Months</div>
-          <div class="phase-title">DACH + Nordics</div>
-          <p class="phase-desc">Expand to Austria, Switzerland, and Scandinavian markets. Include Go and Python teams — infrastructure-heavy companies, cloud-native stacks with strong DevOps culture.</p>
-          <div class="lang-tags">
-            <span class="lang-tag primary">Go</span>
-            <span class="lang-tag primary">Python</span>
-            <span class="lang-tag">Kubernetes</span>
-            <span class="lang-tag">GCP / AWS</span>
-          </div>
-        </div>
-
-        <div class="roadmap-phase">
-          <div class="phase-label">Phase 3 — 12 Months</div>
-          <div class="phase-title">UK + Benelux</div>
-          <p class="phase-desc">Enter the UK and Netherlands markets. Target fintech and SaaS companies with mature incident response processes. Add Kotlin and Rust support for modern mobile-backend stacks.</p>
-          <div class="lang-tags">
-            <span class="lang-tag primary">Kotlin</span>
-            <span class="lang-tag primary">Rust</span>
-            <span class="lang-tag">Node.js</span>
-            <span class="lang-tag">Terraform</span>
-          </div>
-        </div>
-
-        <div class="roadmap-phase">
-          <div class="phase-label">Phase 4 — 18 Months</div>
-          <div class="phase-title">US + APAC</div>
-          <p class="phase-desc">Enter the US enterprise market and APAC. Support the full polyglot stack. Federated multi-org deployment for large enterprise groups and regulated industries globally.</p>
-          <div class="lang-tags">
-            <span class="lang-tag primary">Full polyglot</span>
-            <span class="lang-tag">Multi-cloud</span>
-            <span class="lang-tag">FedRAMP</span>
-            <span class="lang-tag">ISO 27001</span>
-          </div>
-        </div>
-
-        <div class="roadmap-phase">
-          <div class="phase-label">Phase 5 — 24 Months</div>
-          <div class="phase-title">Federated Enterprise</div>
-          <p class="phase-desc">Cross-organisation incident knowledge pools. Industry consortia share anonymised incident patterns across CVMs. Flower-coordinated aggregation with full attestation between nodes.</p>
-          <div class="lang-tags">
-            <span class="lang-tag primary">Flower FL</span>
-            <span class="lang-tag primary">Multi-org</span>
-            <span class="lang-tag">Zero-trust</span>
-            <span class="lang-tag">Consortium</span>
-          </div>
-        </div>
-
+      <div class="timeline-footer-instruction">
+        SCROLL TO ADVANCE / CLICK NODE TO JUMP
       </div>
     </div>
   </section>
-
-  <div class="section-divider"><div class="divider-line"></div></div>
 
   <!-- ── Architecture ── -->
   <section id="architecture">
