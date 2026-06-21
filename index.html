@@ -893,7 +893,7 @@
       <li><a href="#market">Market</a></li>
       <li><a href="#architecture">Architecture</a></li>
       <li><a href="#federated">Scale</a></li>
-      <li><a href="#team">Team</a></li>
+      <li><a href="team">Team</a></li>
     </ul>
     <a href="https://github.com/Span-Ish/somethingsomethingsomethingsomething/tree/pitch" class="nav-cta">Prototype</a>
   </nav>
@@ -1105,14 +1105,14 @@
 
         <div class="arch-layer" style="background: rgba(255,111,197,.03);">
           <div class="layer-name">Client</div>
-          <div class="layer-desc">On-call engineer submits a natural-language query over HTTPS. Before uploading any documents, client verifies the cryptographic attestation proof to confirm exact code is running.</div>
+          <div class="layer-desc">On-call engineer submits a natural-language query over HTTPS. Before uploading any documents, client verifies the cryptographic attestation proof per session to confirm exact code is running.</div>
         </div>
 
         <div style="text-align:center; padding: .5rem; color: var(--mid); font-size: .8rem; font-family: var(--font-mono);">↓ TLS (Dstack Gateway) ↓</div>
 
         <div class="arch-layer tee-boundary">
           <span class="tee-label">TEE BOUNDARY — Intel TDX CVM</span>
-          <div class="layer-name"><span class="layer-icon">⚡</span>FastAPI</div>
+          <div class="layer-name"><span class="layer-icon"></span>FastAPI</div>
           <div class="layer-desc">REST endpoint inside the CVM. Receives query, orchestrates the pipeline, returns grounded answer with source citations. All processing sealed inside hardware-encrypted memory.</div>
         </div>
 
